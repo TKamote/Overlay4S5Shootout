@@ -2,7 +2,7 @@
 
 import type { ShootHistoryEntry, ShootHistoryRound, ShootoutPlayer } from "@/hooks/useShootoutMatch";
 
-const W = 450;
+const W = 400;
 const PAD = 24;
 const LINE = 32;
 const TITLE = 22;
