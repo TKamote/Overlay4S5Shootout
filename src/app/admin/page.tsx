@@ -29,7 +29,7 @@ export default function AdminPage() {
   const [message, setMessage] = useState<string | null>(null);
 
   const [familyName, setFamilyName] = useState("");
-  const [packId, setPackId] = useState<PackId>("jhayr");
+  const [packId, setPackId] = useState<PackId>("shootout");
   const [provisionBusy, setProvisionBusy] = useState(false);
 
   const [linkEmail, setLinkEmail] = useState("");
@@ -151,7 +151,7 @@ export default function AdminPage() {
         <div>
           <h1 className="text-2xl font-bold">Admin</h1>
           <p className="mt-1 text-sm text-neutral-600">
-            All JhayR / Anthony / Trapezium / Round Top pairs. Create Auth users in Supabase, then link email here.
+            Shootout accounts. Create Auth users in Supabase, then link email here.
           </p>
         </div>
         <Link href="/" className="shrink-0 text-sm underline">
@@ -276,7 +276,7 @@ export default function AdminPage() {
             <input
               value={familyName}
               onChange={(e) => setFamilyName(e.target.value)}
-              placeholder="Anthony"
+              placeholder="Shootout"
               className="rounded-lg border border-neutral-300 px-3 py-2"
               required
             />
@@ -324,7 +324,7 @@ export default function AdminPage() {
             />
           </label>
           <label className="flex flex-1 flex-col gap-1 text-sm">
-            Overlay pair
+            Family
             <select
               value={linkFamilyId}
               onChange={(e) => setLinkFamilyId(e.target.value)}

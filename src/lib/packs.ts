@@ -1,13 +1,16 @@
 import { supabase } from "@/lib/supabase";
 
-export const PACK_IDS = ["jhayr", "anthony", "trapezium", "roundtop"] as const;
+/** Fixed Overlay4S1 shootout match. OBS and the phone controller share it. */
+export const SHOOTOUT_MATCH_ID = "overlay4s1";
+
+/** Logo and player-photo library for that one shootout. */
+export const SHOOTOUT_LIBRARY_ID = "shootout" as const;
+
+export const PACK_IDS = [SHOOTOUT_LIBRARY_ID] as const;
 export type PackId = (typeof PACK_IDS)[number];
 
 export const PACK_META: Record<PackId, { name: string; shortName: string }> = {
-  jhayr: { name: "JhayR", shortName: "JhayR" },
-  anthony: { name: "Anthony", shortName: "Anthony" },
-  trapezium: { name: "Trapezium", shortName: "Trapezium" },
-  roundtop: { name: "Round Top", shortName: "Round Top" },
+  shootout: { name: "Shootout", shortName: "Shootout" },
 };
 
 export function isPackId(value: string): value is PackId {

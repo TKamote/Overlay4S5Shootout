@@ -11,7 +11,7 @@ import { type GameMode } from "@/hooks/useOverlayMatch";
 import { DEFAULT_BALL_STYLE, parseBallStyle, type BallStyleId } from "@/lib/ballStyles";
 import { isCurrentUserAdmin } from "@/lib/admin";
 import { deleteLogo, listLogos, uploadOverlayLogo, type LogoRow } from "@/lib/logos";
-import { isPackId, listBuyerGrants, type PackId } from "@/lib/packs";
+import { isPackId, listBuyerGrants, SHOOTOUT_LIBRARY_ID, type PackId } from "@/lib/packs";
 import { uploadPlayerPhoto } from "@/lib/playerPhotos";
 import {
   createPlayer,
@@ -58,28 +58,9 @@ export default function PlayersManager({ packFromUrl }: { packFromUrl?: string }
   );
 }
 
+/** This app has one shootout library. Roster and logos are not an overlay pack. */
 async function resolveSeries1PackId(): Promise<PackId | null> {
-  if (!supabase) return null;
-  const { data: match } = await supabase
-    .from("matches")
-    .select("pack_id")
-    .eq("id", "overlay4s1")
-    .maybeSingle();
-  const fromMatch = match?.pack_id as string | undefined;
-  if (fromMatch && isPackId(fromMatch)) return fromMatch;
-
-  const familyId = await getFamilyId();
-  if (familyId) {
-    const { data: fp } = await supabase
-      .from("family_packs")
-      .select("pack_id")
-      .eq("family_id", familyId)
-      .limit(1)
-      .maybeSingle();
-    const fromFp = fp?.pack_id as string | undefined;
-    if (fromFp && isPackId(fromFp)) return fromFp;
-  }
-  return null;
+  return SHOOTOUT_LIBRARY_ID;
 }
 
 function PlayersManagerInner({ packFromUrl }: { packFromUrl?: string }) {
