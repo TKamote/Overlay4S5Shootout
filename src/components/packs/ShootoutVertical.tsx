@@ -80,7 +80,7 @@ export default function ShootoutVertical({ matchId }: { matchId: string }) {
               exit={{ y: -200, opacity: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="relative overflow-hidden rounded-xl border-2 border-white/20 bg-black shadow-2xl"
-              style={{ width: 180, aspectRatio: "16/9" }}
+              style={{ width: 198, aspectRatio: "16/9" }}
             >
               <Image
                 src={state.sponsor_image_url}
@@ -94,11 +94,11 @@ export default function ShootoutVertical({ matchId }: { matchId: string }) {
         )}
       </AnimatePresence>
 
-      <div className="absolute left-4 top-4 z-20 flex gap-2 rounded-lg border border-white/10 bg-black/40 p-2 backdrop-blur-sm">
+      <div className="absolute left-[25px] top-4 z-20 flex w-max gap-5 rounded-lg border border-white/10 bg-black/40 py-2 backdrop-blur-sm">
         {[state.logo_1_url, state.logo_2_url, state.logo_3_url].map((url, i) => (
           <div
             key={i}
-            className="relative h-[52px] w-[52px] overflow-hidden rounded-full border border-white/20 bg-white/5"
+            className="relative h-[55px] w-[55px] overflow-hidden rounded-full border border-white/20 bg-white/5"
           >
             {url && (
               <Image src={url} alt={`Logo ${i + 1}`} fill className="object-cover" unoptimized />
@@ -107,7 +107,7 @@ export default function ShootoutVertical({ matchId }: { matchId: string }) {
         ))}
       </div>
 
-      <div className="absolute bottom-32 left-[3%] right-[3%] top-4 z-10 flex flex-col gap-4 pt-16">
+      <div className="absolute bottom-32 left-[calc(3%+25px)] right-[calc(3%+25px)] top-4 z-10 flex flex-col gap-4 pt-16">
         {/* QUEUE — 13 compact slots */}
         <div className="flex shrink-0 flex-col gap-1.5">
           <h2 className="text-right text-sm font-black uppercase tracking-widest text-white/90 drop-shadow-md">

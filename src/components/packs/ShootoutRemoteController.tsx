@@ -277,6 +277,7 @@ export function ShootoutRemoteController({ packId, matchId }: { packId: PackId; 
   const activePlayer = state.players.find((p) => p.status === "active");
   const queuedCount = queuePlayers(state.players).length;
   const finishedCount = state.players.filter((p) => p.status === "finished").length;
+  const shotCount = state.shoot_history.reduce((count, round) => count + round.entries.length, 0);
   const sortedPlayers = [...state.players].sort((a, b) =>
     a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
   );
@@ -384,9 +385,10 @@ export function ShootoutRemoteController({ packId, matchId }: { packId: PackId; 
             <button
               type="button"
               onClick={handleDownloadPng}
-              className="min-h-11 rounded-lg bg-slate-900 px-4 text-sm font-bold text-white active:bg-slate-800"
+              disabled={shotCount === 0}
+              className="min-h-11 rounded-lg bg-slate-900 px-4 text-sm font-bold text-white active:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
             >
-              Download PNG
+              Save results PNG
             </button>
           </div>
         </div>

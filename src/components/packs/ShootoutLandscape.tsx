@@ -81,7 +81,7 @@ export default function ShootoutLandscape({ matchId }: { matchId: string }) {
               exit={{ y: -200, opacity: 0 }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               className="relative overflow-hidden rounded-xl border-2 border-white/20 bg-black shadow-2xl"
-              style={{ width: 200, aspectRatio: "16/9" }}
+              style={{ width: 220, aspectRatio: "16/9" }}
             >
               <Image
                 src={state.sponsor_image_url}
@@ -96,12 +96,12 @@ export default function ShootoutLandscape({ matchId }: { matchId: string }) {
       </AnimatePresence>
 
       {/* --- LEFT COLUMN: Logos + Leaderboard --- */}
-      <div className="absolute bottom-32 left-[3%] top-8 z-10 flex w-80 flex-col gap-6">
-        <div className="flex items-center justify-between rounded-xl border border-white/10 bg-black/40 p-4 shadow-lg backdrop-blur-sm">
+      <div className="absolute bottom-32 left-[calc(5%+25px)] top-8 z-10 flex w-80 flex-col gap-6">
+        <div className="flex w-max items-center gap-5 rounded-xl border border-white/10 bg-black/40 py-4 shadow-lg backdrop-blur-sm">
           {[state.logo_1_url, state.logo_2_url, state.logo_3_url].map((url, i) => (
             <div
               key={i}
-              className="relative h-[104px] w-[104px] overflow-hidden rounded-full border border-white/20 bg-white/5"
+              className="relative h-[109px] w-[109px] overflow-hidden rounded-full border border-white/20 bg-white/5"
             >
               {url && (
                 <Image src={url} alt={`Logo ${i + 1}`} fill className="object-cover" unoptimized />
@@ -130,17 +130,17 @@ export default function ShootoutLandscape({ matchId }: { matchId: string }) {
                     layout: { duration: 2.5, ease: [0.16, 1, 0.3, 1] },
                   }}
                   onDoubleClick={() => handleDeclareWinner(p.id)}
-                  className={`absolute left-0 right-0 flex min-w-0 cursor-default items-center justify-between gap-2 overflow-hidden rounded-lg border-l-4 border-l-amber-500 bg-gradient-to-r from-black/80 to-black/40 p-3 shadow-lg backdrop-blur-sm ${
+                  className={`absolute left-0 right-0 flex min-w-0 cursor-default items-center justify-between gap-2 overflow-hidden rounded-lg border-l-4 border-l-amber-500 bg-gradient-to-r from-black/80 to-black/40 px-3 py-[13px] shadow-lg backdrop-blur-sm ${
                     canEdit ? "cursor-pointer" : ""
                   } ${p.isWinner ? "ring-2 ring-amber-400" : ""}`}
-                  style={{ top: i * 68 }}
+                  style={{ top: i * 75 }}
                   title={canEdit ? "Double-click to declare winner" : undefined}
                 >
                   <div className="flex min-w-0 flex-1 items-center gap-3">
-                    <span className="w-6 shrink-0 text-xl font-black text-amber-500">{i + 1}</span>
-                    <span className="truncate text-xl font-bold uppercase text-white">{p.name}</span>
+                    <span className="w-7 shrink-0 text-[22px] font-black text-amber-500">{i + 1}</span>
+                    <span className="truncate text-[22px] font-bold uppercase text-white">{p.name}</span>
                   </div>
-                  <div className="shrink-0 rounded bg-amber-500/20 px-3 py-1 text-2xl font-black text-amber-400 shadow-inner">
+                  <div className="shrink-0 rounded bg-amber-500/20 px-3 py-1 text-[26px] font-black text-amber-400 shadow-inner">
                     {p.score}
                   </div>
                 </motion.div>
@@ -151,25 +151,25 @@ export default function ShootoutLandscape({ matchId }: { matchId: string }) {
       </div>
 
       {/* --- RIGHT COLUMN: 13-slot Up Next --- */}
-      <div className="absolute bottom-32 right-[3%] top-8 z-10 flex w-[280px] flex-col items-end gap-2">
-        <h2 className="text-xl font-black uppercase tracking-widest text-white/90 drop-shadow-md">
+      <div className="absolute bottom-32 right-[calc(5%+25px)] top-8 z-10 flex w-[280px] flex-col items-end gap-2">
+        <h2 className="text-3xl font-black uppercase tracking-widest text-white/90 drop-shadow-md">
           Up Next
         </h2>
-        <div className="flex w-full flex-col items-end gap-1.5">
+        <div className="flex w-full flex-col items-end gap-[7px]">
           {slots.map((slot, i) => {
             const tier = Math.min(i, 3);
             const widthClass =
               tier === 0 ? "w-[78%]" : tier === 1 ? "w-[70%]" : tier === 2 ? "w-[62%]" : "w-[54%]";
             const heightClass =
-              tier === 0 ? "h-14" : tier === 1 ? "h-11" : tier === 2 ? "h-9" : "h-8";
+              tier === 0 ? "h-[62px]" : tier === 1 ? "h-[48px]" : tier === 2 ? "h-[40px]" : "h-[35px]";
             const textClass =
               tier === 0
-                ? "text-xl font-black"
+                ? "text-[22px] font-black"
                 : tier === 1
-                  ? "text-lg font-bold"
+                  ? "text-[20px] font-bold"
                   : tier === 2
-                    ? "text-base font-semibold"
-                    : "text-sm font-medium";
+                    ? "text-[18px] font-semibold"
+                    : "text-[15px] font-medium";
             const isShooter = i === 0 && slot && (slot.player.status === "active" || slot.linger);
             const shellClass = slot
               ? isShooter
@@ -196,7 +196,7 @@ export default function ShootoutLandscape({ matchId }: { matchId: string }) {
                         {slot.player.name}
                       </span>
                       {isShooter && (
-                        <span className="text-2xl font-black tabular-nums text-white drop-shadow-md">
+                        <span className="text-[26px] font-black tabular-nums text-white drop-shadow-md">
                           {slot.player.score}
                         </span>
                       )}
