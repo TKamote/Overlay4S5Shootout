@@ -79,5 +79,5 @@ export async function persistMatchPatchOnPack(
     }
   }
 
-  await Promise.all([...ids].map((id) => persistMatchPatch(id, patch, auth)));
+  await Promise.all(Array.from(ids).map((id) => persistMatchPatch(id, patch, auth)));
 }
